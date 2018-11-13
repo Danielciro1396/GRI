@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+  <persistence-unit name="Persistencia">
+   <provider>org.hibernate.ejb.HibernatePersistence</provider>
+   <class>co.edu.uniquindio.gri.CvLac.Idiomas</class>
+   <class>co.edu.uniquindio.gri.CvLac.Investigador</class>
+   <class>co.edu.uniquindio.gri.CvLac.Produccion</class>
+   <class>co.edu.uniquindio.gri.GrupLac.Produccion</class>
+   <class>co.edu.uniquindio.gri.CvLac.ProduccionBibliografica</class>
+   <class>co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica</class>
+   <class>co.edu.uniquindio.gri.GrupLac.Grupo</class>
+   <class>co.edu.uniquindio.gri.Objects.Centro</class>
+   <class>co.edu.uniquindio.gri.Objects.Facultad</class>
+   <class>co.edu.uniquindio.gri.Objects.LineasInvestigacion</class>
+   <class>co.edu.uniquindio.gri.Objects.Programa</class>
+   <class>co.edu.uniquindio.gri.Objects.TipoProduccion</class>
+   <class>co.edu.uniquindio.gri.Objects.Tipo</class>
+  
+    <properties>
+        <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+        <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gri" />
+        <property name="javax.persistence.jdbc.user" value="postgres" />
+        <property name="javax.persistence.jdbc.password" value="postgres" />
+        <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+        <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+    </properties>
+  </persistence-unit>
+
+</persistence>
