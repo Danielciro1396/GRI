@@ -341,7 +341,8 @@ public class GrupLac {
 					elemMapas = limpiar(elemMapas);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_CARTA_MAPA, Constantes.CARTA_MAPA);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_CARTA_MAPA, Constantes.CARTA_MAPA, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemMapas, "INSTITUCIÓN FINANCIADORA:", tipo, grupo));
@@ -357,7 +358,8 @@ public class GrupLac {
 					elemConsultorias = limpiar(elemConsultorias);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_CONSULTORIA, Constantes.CONSULTORIA);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_CONSULTORIA, Constantes.CONSULTORIA, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemConsultorias, "DISPONIBILIDAD:", tipo, grupo));
@@ -373,7 +375,8 @@ public class GrupLac {
 					elemDisenios = limpiar(elemDisenios);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_DISEÑO_INDUSTRIAL, Constantes.DISEÑO_INDUSTRIAL);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_DISEÑO_INDUSTRIAL, Constantes.DISEÑO_INDUSTRIAL, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemDisenios, "DISPONIBILIDAD:", tipo, grupo));
@@ -389,7 +392,8 @@ public class GrupLac {
 					elemEsquemas = limpiar(elemEsquemas);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_ESQUEMA_IC, Constantes.ESQUEMA_IC);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_ESQUEMA_IC, Constantes.ESQUEMA_IC, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemEsquemas, "DISPONIBILIDAD:", tipo, grupo));
@@ -405,7 +409,9 @@ public class GrupLac {
 					elemInnovacionesProc = limpiar(elemInnovacionesProc);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_INNOVACION_PROCESO, Constantes.INNOVACION_PROCESO);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_INNOVACION_PROCESO, Constantes.INNOVACION_PROCESO,
+							tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemInnovacionesProc, "DISPONIBILIDAD:", tipo, grupo));
@@ -421,7 +427,9 @@ public class GrupLac {
 					elemInnovacionesGest = limpiar(elemInnovacionesGest);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_INNOVACION_EMPRESARIAL, Constantes.INNOVACION_EMPRESARIAL);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_INNOVACION_EMPRESARIAL, Constantes.INNOVACION_EMPRESARIAL,
+							tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemInnovacionesGest, "DISPONIBILIDAD:", tipo, grupo));
@@ -437,7 +445,8 @@ public class GrupLac {
 					elemPlantasPiloto = limpiar(elemPlantasPiloto);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_PLANTA_PILOTO, Constantes.PLANTA_PILOTO);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_PLANTA_PILOTO, Constantes.PLANTA_PILOTO, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemPlantasPiloto, "DISPONIBILIDAD:", tipo, grupo));
@@ -453,7 +462,9 @@ public class GrupLac {
 					elemOtrosProdTecno = limpiar(elemOtrosProdTecno);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_OTRO_PRODUCTO_TECNOLOGICO, Constantes.OTRO_PRODUCTO_TECNOLOGICO);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_OTRO_PRODUCTO_TECNOLOGICO, Constantes.OTRO_PRODUCTO_TECNOLOGICO,
+							tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemOtrosProdTecno, "DISPONIBILIDAD:", tipo, grupo));
@@ -469,7 +480,8 @@ public class GrupLac {
 					elemPrototipos = limpiar(elemPrototipos);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_PROTOTIPO, Constantes.PROTOTIPO);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_PROTOTIPO, Constantes.PROTOTIPO, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemPrototipos, "DISPONIBILIDAD:", tipo, grupo));
@@ -485,7 +497,8 @@ public class GrupLac {
 					elemRegulaciones = limpiar(elemRegulaciones);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_NORMA, Constantes.NORMA);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_NORMA, Constantes.NORMA, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemRegulaciones, "AMBITO:", tipo, grupo));
@@ -501,7 +514,9 @@ public class GrupLac {
 					elemReglamentos = limpiar(elemReglamentos);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_REGLAMENTO_TECNICO, Constantes.REGLAMENTO_TECNICO);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_REGLAMENTO_TECNICO, Constantes.REGLAMENTO_TECNICO,
+							tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemReglamentos, "DISPONIBILIDAD:", tipo, grupo));
@@ -517,7 +532,8 @@ public class GrupLac {
 					elemGuiasClinicas = limpiar(elemGuiasClinicas);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_GUIA_CLINICA, Constantes.GUIA_CLINICA);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_GUIA_CLINICA, Constantes.GUIA_CLINICA, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemGuiasClinicas, "AMBITO:", tipo, grupo));
@@ -533,7 +549,8 @@ public class GrupLac {
 					elemProyectoLey = limpiar(elemProyectoLey);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_PROYECTO_LEY, Constantes.PROYECTO_LEY);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_PROYECTO_LEY, Constantes.PROYECTO_LEY, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemProyectoLey, "AMBITO:", tipo, grupo));
@@ -549,7 +566,8 @@ public class GrupLac {
 					elemSoftwares = limpiar(elemSoftwares);
 
 					List<Produccion> auxProdTecnica = grupo.getProduccion();
-					Tipo tipo = new Tipo(Constantes.ID_SOFTWARE, Constantes.SOFTWARE);
+					TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+					Tipo tipo = new Tipo(Constantes.ID_SOFTWARE, Constantes.SOFTWARE, tipoProduccion);
 
 					if (auxProdTecnica == null) {
 						grupo.setProduccion(extraerProdTecnica(elemSoftwares, "DISPONIBILIDAD:", tipo, grupo));
@@ -1118,7 +1136,7 @@ public class GrupLac {
 				if (elemInfoGeneral.get(i).startsWith("CLASIFICACIÓN")) {
 					grupo.setCategoria(elemInfoGeneral.get(i + 1));
 					if (grupo.getCategoria().equalsIgnoreCase("ÁREA DE CONOCIMIENTO")) {
-						grupo.setCategoria("SIN CATEGORIA");
+						grupo.setCategoria("SIN CATEGORÍA");
 					}
 				}
 
@@ -1163,12 +1181,22 @@ public class GrupLac {
 				if (!urlSetInvestigadores.contains(link)) {
 					if (elem.get(i + 4).contains("Actual")) {
 						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link);
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
 						grupo.getInvestigadores().add(auxInvestigador);
 						urlSetInvestigadores.add(link);
 					} else if (elem.get(i + 5).contains("Actual")) {
 						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link);
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+						grupo.getInvestigadores().add(auxInvestigador);
+						urlSetInvestigadores.add(link);
+					} else if (elem.get(i + 4).contains("-")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL");
+						grupo.getInvestigadores().add(auxInvestigador);
+						urlSetInvestigadores.add(link);
+					} else if (elem.get(i + 5).contains("-")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL");
 						grupo.getInvestigadores().add(auxInvestigador);
 						urlSetInvestigadores.add(link);
 					}
@@ -1195,6 +1223,8 @@ public class GrupLac {
 		String anio = "";
 		String issn = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
@@ -1205,11 +1235,11 @@ public class GrupLac {
 			if (elem.get(i).contains(".-")) {
 				if (elem.get(i + 1).contains("PUBLICADO EN REVISTA ESPECIALIZADA:")) {
 
-					tipo = new Tipo(Constantes.ID_ARTICULO, Constantes.ARTICULO);
+					tipo = new Tipo(Constantes.ID_ARTICULO, Constantes.ARTICULO, tipoProduccion);
 
 				} else {
 
-					tipo = new Tipo(Constantes.ID_OTRO_ARTICULO, Constantes.OTRO_ARTICULO);
+					tipo = new Tipo(Constantes.ID_OTRO_ARTICULO, Constantes.OTRO_ARTICULO, tipoProduccion);
 
 				}
 
@@ -1271,6 +1301,8 @@ public class GrupLac {
 		String anio = "";
 		String isbn = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
@@ -1281,7 +1313,7 @@ public class GrupLac {
 			if (elem.get(i).contains(".-")) {
 				if (elem.get(i + 1).contains("LIBRO RESULTADO DE INVESTIGACIÓN")) {
 
-					tipo = new Tipo(Constantes.ID_LIBRO, Constantes.LIBRO);
+					tipo = new Tipo(Constantes.ID_LIBRO, Constantes.LIBRO, tipoProduccion);
 
 				}
 
@@ -1358,6 +1390,8 @@ public class GrupLac {
 		String anio = "";
 		String isbn = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
@@ -1368,11 +1402,11 @@ public class GrupLac {
 			if (elem.get(i).contains(".-")) {
 				if (!elem.get(i).contains("OTRO CAPÍTULO")) {
 
-					tipo = new Tipo(Constantes.ID_CAPITULO_LIBRO, Constantes.CAPITULO_LIBRO);
+					tipo = new Tipo(Constantes.ID_CAPITULO_LIBRO, Constantes.CAPITULO_LIBRO, tipoProduccion);
 
 				} else {
 
-					tipo = new Tipo(Constantes.ID_OTRO_CAPITULO_LIBRO, Constantes.OTRO_CAPITULO_LIBRO);
+					tipo = new Tipo(Constantes.ID_OTRO_CAPITULO_LIBRO, Constantes.OTRO_CAPITULO_LIBRO, tipoProduccion);
 
 				}
 
@@ -1446,6 +1480,8 @@ public class GrupLac {
 		String anio = "";
 		String id = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
@@ -1457,7 +1493,7 @@ public class GrupLac {
 				if (elem.get(i + 1).contains("DOCUMENTO DE TRABAJO")) {
 					id = "DOCUMENTO DE TRABAJO";
 
-					tipo = new Tipo(Constantes.ID_DOCUMENTO_TRABAJO, Constantes.DOCUMENTO_TRABAJO);
+					tipo = new Tipo(Constantes.ID_DOCUMENTO_TRABAJO, Constantes.DOCUMENTO_TRABAJO, tipoProduccion);
 
 				}
 
@@ -1516,6 +1552,8 @@ public class GrupLac {
 		String anio = "";
 		String id = "OTRA PUBLICACIÓN DIVULGATIVA";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
+
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
 
 		for (int i = 0; i < elem.size(); i++) {
@@ -1552,7 +1590,7 @@ public class GrupLac {
 				produccionBibliografica.setIdentificador(id);
 				produccionBibliografica.setReferencia(referencia);
 				Tipo tipo = new Tipo(Constantes.ID_OTRA_PUBLICACION_DIVULGATIVA,
-						Constantes.OTRA_PUBLICACION_DIVULGATIVA);
+						Constantes.OTRA_PUBLICACION_DIVULGATIVA, tipoProduccion);
 				produccionBibliografica.setTipo(tipo);
 				produccionBibliografica.setGrupo(grupo);
 				produccionBibliografica.setRepetido("NO");
@@ -1575,6 +1613,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 		String issn = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
 
@@ -1613,7 +1653,7 @@ public class GrupLac {
 				produccionBibliografica.setAutores(autores);
 				produccionBibliografica.setIdentificador(issn);
 				produccionBibliografica.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_OTRO_ARTICULO, Constantes.OTRO_ARTICULO);
+				Tipo tipo = new Tipo(Constantes.ID_OTRO_ARTICULO, Constantes.OTRO_ARTICULO, tipoProduccion);
 				produccionBibliografica.setTipo(tipo);
 				produccionBibliografica.setGrupo(grupo);
 				produccionBibliografica.setRepetido("NO");
@@ -1636,6 +1676,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 		String isbn = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
 
@@ -1678,7 +1720,7 @@ public class GrupLac {
 				produccionBibliografica.setAutores(autores);
 				produccionBibliografica.setIdentificador(isbn);
 				produccionBibliografica.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_OTRO_LIBRO, Constantes.OTRO_LIBRO);
+				Tipo tipo = new Tipo(Constantes.ID_OTRO_LIBRO, Constantes.OTRO_LIBRO, tipoProduccion);
 				produccionBibliografica.setTipo(tipo);
 				produccionBibliografica.setGrupo(grupo);
 				produccionBibliografica.setRepetido("NO");
@@ -1701,6 +1743,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 		String id = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_BIBLIOGRAFICA, Constantes.BIBLIOGRAFICA);
 
 		ArrayList<ProduccionBibliografica> prodBibliograficaAux = new ArrayList<>();
 
@@ -1746,7 +1790,7 @@ public class GrupLac {
 				produccionBibliografica.setAutores(autores);
 				produccionBibliografica.setIdentificador(id);
 				produccionBibliografica.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_TRADUCCION, Constantes.TRADUCCION);
+				Tipo tipo = new Tipo(Constantes.ID_TRADUCCION, Constantes.TRADUCCION, tipoProduccion);
 				produccionBibliografica.setTipo(tipo);
 				produccionBibliografica.setGrupo(grupo);
 				produccionBibliografica.setRepetido("NO");
@@ -1804,8 +1848,6 @@ public class GrupLac {
 				produccionTecnica.setReferencia(referencia);
 				produccionTecnica.setTipo(tipo);
 				produccionTecnica.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
-				produccionTecnica.setTipoProduccion(tipoProduccion);
 				produccionTecnica.setRepetido("NO");
 				identificarRepetidos(prodTecnicaAux, produccionTecnica);
 				prodTecnicaAux.add(produccionTecnica);
@@ -1825,6 +1867,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodTecnicaAux = new ArrayList<>();
@@ -1834,7 +1878,7 @@ public class GrupLac {
 			Produccion produccionTecnica = new Produccion();
 			if (elem.get(i).contains(".-")) {
 
-				tipo = new Tipo(Constantes.ID_EMPRESA_TECNOLOGICA, Constantes.EMPRESA_TECNOLOGICA);
+				tipo = new Tipo(Constantes.ID_EMPRESA_TECNOLOGICA, Constantes.EMPRESA_TECNOLOGICA, tipoProduccion);
 
 				int cont = i + 2;
 				referencia = "";
@@ -1861,8 +1905,6 @@ public class GrupLac {
 				produccionTecnica.setReferencia(referencia);
 				produccionTecnica.setTipo(tipo);
 				produccionTecnica.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_TECNICA, Constantes.TECNICA);
-				produccionTecnica.setTipoProduccion(tipoProduccion);
 				produccionTecnica.setRepetido("NO");
 				identificarRepetidos(prodTecnicaAux, produccionTecnica);
 				prodTecnicaAux.add(produccionTecnica);
@@ -1886,6 +1928,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
 
@@ -1915,11 +1959,9 @@ public class GrupLac {
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_EDICION, Constantes.EDICION);
+				Tipo tipo = new Tipo(Constantes.ID_EDICION, Constantes.EDICION, tipoProduccion);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -1938,6 +1980,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
 
@@ -1967,11 +2011,10 @@ public class GrupLac {
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_INFORME_INVESTIGACION, Constantes.INFORME_INVESTIGACION);
+				Tipo tipo = new Tipo(Constantes.ID_INFORME_INVESTIGACION, Constantes.INFORME_INVESTIGACION,
+						tipoProduccion);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -1991,6 +2034,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
@@ -2001,11 +2046,11 @@ public class GrupLac {
 
 			if (elem.get(i).contains("REDES DE CONOCIMIENTO")) {
 
-				tipo = new Tipo(Constantes.ID_RED, Constantes.RED);
+				tipo = new Tipo(Constantes.ID_RED, Constantes.RED, tipoProduccion);
 
 			} else if (elem.get(i).contains("ESPACIOS DE PARTICIPACIÓN CIUDADANA")) {
 
-				tipo = new Tipo(Constantes.ID_ESPACIO_PARTICIPACION, Constantes.ESPACIO_PARTICIPACION);
+				tipo = new Tipo(Constantes.ID_ESPACIO_PARTICIPACION, Constantes.ESPACIO_PARTICIPACION, tipoProduccion);
 
 			}
 			if (elem.get(i).contains(".-")) {
@@ -2032,8 +2077,6 @@ public class GrupLac {
 				apropiacionSocial.setReferencia(referencia);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -2053,6 +2096,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
@@ -2063,15 +2108,15 @@ public class GrupLac {
 
 			if (elem.get(i).contains("GENERACIÓN DE CONTENIDO IMPRESO")) {
 
-				tipo = new Tipo(Constantes.ID_CONTENIDO_IMPRESO, Constantes.CONTENIDO_IMPRESO);
+				tipo = new Tipo(Constantes.ID_CONTENIDO_IMPRESO, Constantes.CONTENIDO_IMPRESO, tipoProduccion);
 
 			} else if (elem.get(i).contains("GENERACIÓN DE CONTENIDO MULTIMEDIA")) {
 
-				tipo = new Tipo(Constantes.ID_CONTENIDO_MULTIMEDIA, Constantes.CONTENIDO_MULTIMEDIA);
+				tipo = new Tipo(Constantes.ID_CONTENIDO_MULTIMEDIA, Constantes.CONTENIDO_MULTIMEDIA, tipoProduccion);
 
 			} else if (elem.get(i).contains("GENERACIÓN DE CONTENIDO VIRTUAL")) {
 
-				tipo = new Tipo(Constantes.ID_CONTENIDO_VIRTUAL, Constantes.CONTENIDO_VIRTUAL);
+				tipo = new Tipo(Constantes.ID_CONTENIDO_VIRTUAL, Constantes.CONTENIDO_VIRTUAL, tipoProduccion);
 
 			}
 			if (elem.get(i).contains(".-")) {
@@ -2103,8 +2148,6 @@ public class GrupLac {
 				apropiacionSocial.setReferencia(referencia);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -2123,6 +2166,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
 
@@ -2152,11 +2197,10 @@ public class GrupLac {
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_ESTRATEGIA_COMUNICACION, Constantes.ESTRATEGIA_COMUNICACION);
+				Tipo tipo = new Tipo(Constantes.ID_ESTRATEGIA_COMUNICACION, Constantes.ESTRATEGIA_COMUNICACION,
+						tipoProduccion);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -2175,6 +2219,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
 
@@ -2205,11 +2251,10 @@ public class GrupLac {
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_ESTRATEGIA_PEDAGOGICA, Constantes.ESTRATEGIA_PEDAGOGICA);
+				Tipo tipo = new Tipo(Constantes.ID_ESTRATEGIA_PEDAGOGICA, Constantes.ESTRATEGIA_PEDAGOGICA,
+						tipoProduccion);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -2228,6 +2273,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
 
 		ArrayList<Produccion> auxProduccion = new ArrayList<>();
 
@@ -2260,11 +2307,9 @@ public class GrupLac {
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_EVENTO_CINTIFICO, Constantes.EVENTO_CIENTIFICO);
+				Tipo tipo = new Tipo(Constantes.ID_EVENTO_CINTIFICO, Constantes.EVENTO_CIENTIFICO, tipoProduccion);
 				apropiacionSocial.setTipo(tipo);
 				apropiacionSocial.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_APROPIACION, Constantes.APROPIACION);
-				apropiacionSocial.setTipoProduccion(tipoProduccion);
 				apropiacionSocial.setRepetido("NO");
 				identificarRepetidos(auxProduccion, apropiacionSocial);
 				auxProduccion.add(apropiacionSocial);
@@ -2288,6 +2333,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_FORMACION, Constantes.FORMACION);
 
 		ArrayList<Produccion> actFormacionAux = new ArrayList<>();
 
@@ -2317,11 +2364,9 @@ public class GrupLac {
 				actividadesFormacion.setAnio(anio);
 				actividadesFormacion.setAutores(autores);
 				actividadesFormacion.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_CURSO_CORTO, Constantes.CURSO_CORTO);
+				Tipo tipo = new Tipo(Constantes.ID_CURSO_CORTO, Constantes.CURSO_CORTO, tipoProduccion);
 				actividadesFormacion.setTipo(tipo);
 				actividadesFormacion.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_FORMACION, Constantes.FORMACION);
-				actividadesFormacion.setTipoProduccion(tipoProduccion);
 				actividadesFormacion.setRepetido("NO");
 				identificarRepetidos(actFormacionAux, actividadesFormacion);
 				actFormacionAux.add(actividadesFormacion);
@@ -2341,6 +2386,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_FORMACION, Constantes.FORMACION);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> actFormacionAux = new ArrayList<>();
@@ -2352,19 +2399,19 @@ public class GrupLac {
 			if (elem.get(i).contains(".-")) {
 				if (elem.get(i + 1).contains("PREGRADO")) {
 
-					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_P, Constantes.TRABAJO_GRADO_P);
+					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_P, Constantes.TRABAJO_GRADO_P, tipoProduccion);
 
 				} else if (elem.get(i + 1).contains("MAESTRÍA")) {
 
-					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_M, Constantes.TRABAJO_GRADO_M);
+					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_M, Constantes.TRABAJO_GRADO_M, tipoProduccion);
 
 				} else if (elem.get(i + 1).contains("DOCTORADO")) {
 
-					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_D, Constantes.TRABAJO_GRADO_D);
+					tipo = new Tipo(Constantes.ID_TRABAJO_GRADO_D, Constantes.TRABAJO_GRADO_D, tipoProduccion);
 
 				} else {
 
-					tipo = new Tipo(Constantes.ID_OTRO, Constantes.OTRO);
+					tipo = new Tipo(Constantes.ID_TUTORIA, Constantes.TUTORIA, tipoProduccion);
 
 				}
 				int cont = i + 2;
@@ -2392,8 +2439,6 @@ public class GrupLac {
 				actividadesFormacion.setReferencia(referencia);
 				actividadesFormacion.setTipo(tipo);
 				actividadesFormacion.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_FORMACION, Constantes.FORMACION);
-				actividadesFormacion.setTipoProduccion(tipoProduccion);
 				actividadesFormacion.setRepetido("NO");
 				identificarRepetidos(actFormacionAux, actividadesFormacion);
 				actFormacionAux.add(actividadesFormacion);
@@ -2417,6 +2462,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_EVALUADOR, Constantes.EVALUADOR);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> actEvaluadorAux = new ArrayList<>();
@@ -2427,7 +2474,8 @@ public class GrupLac {
 
 			if (elem.get(i).contains("JURADO/COMISIONES EVALUADORAS DE TRABAJO DE GRADO")) {
 
-				tipo = new Tipo(Constantes.ID_JURADO_COMITE_EVALUADOR, Constantes.JURADO_COMITE_EVALUADOR);
+				tipo = new Tipo(Constantes.ID_JURADO_COMITE_EVALUADOR, Constantes.JURADO_COMITE_EVALUADOR,
+						tipoProduccion);
 
 			}
 			if (elem.get(i).contains(".-")) {
@@ -2454,8 +2502,6 @@ public class GrupLac {
 				actividadesEvaluador.setReferencia(referencia);
 				actividadesEvaluador.setTipo(tipo);
 				actividadesEvaluador.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_EVALUADOR, Constantes.EVALUADOR);
-				actividadesEvaluador.setTipoProduccion(tipoProduccion);
 				actividadesEvaluador.setRepetido("NO");
 				identificarRepetidos(actEvaluadorAux, actividadesEvaluador);
 				actEvaluadorAux.add(actividadesEvaluador);
@@ -2474,6 +2520,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_EVALUADOR, Constantes.EVALUADOR);
 
 		ArrayList<Produccion> actEvaluadorAux = new ArrayList<>();
 
@@ -2504,11 +2552,9 @@ public class GrupLac {
 				actividadesEvaluador.setAutores(autores);
 				actividadesEvaluador.setReferencia(referencia);
 				Tipo tipo = new Tipo(Constantes.ID_PARTICIPACION_COMITE_EVALUADOR,
-						Constantes.PARTICIPACION_COMITE_EVALUADOR);
+						Constantes.PARTICIPACION_COMITE_EVALUADOR, tipoProduccion);
 				actividadesEvaluador.setTipo(tipo);
 				actividadesEvaluador.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_EVALUADOR, Constantes.EVALUADOR);
-				actividadesEvaluador.setTipoProduccion(tipoProduccion);
 				actividadesEvaluador.setRepetido("NO");
 				identificarRepetidos(actEvaluadorAux, actividadesEvaluador);
 				actEvaluadorAux.add(actividadesEvaluador);
@@ -2532,6 +2578,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_MASINFORMACION, Constantes.MASINFORMACION);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> masInformacionAux = new ArrayList<>();
@@ -2542,7 +2590,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("DEMÁS TRABAJOS")) {
 
-				tipo = new Tipo(Constantes.ID_DEMAS_TRABAJOS, Constantes.DEMAS_TRABAJOS);
+				tipo = new Tipo(Constantes.ID_DEMAS_TRABAJOS, Constantes.DEMAS_TRABAJOS, tipoProduccion);
 			}
 			if (elem.get(i).contains(".-")) {
 				int cont = i + 1;
@@ -2568,9 +2616,6 @@ public class GrupLac {
 				masInformacion.setReferencia(referencia);
 				masInformacion.setTipo(tipo);
 				masInformacion.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_MASINFORMACION,
-						Constantes.MASINFORMACION);
-				masInformacion.setTipoProduccion(tipoProduccion);
 				masInformacion.setRepetido("NO");
 				identificarRepetidos(masInformacionAux, masInformacion);
 				masInformacionAux.add(masInformacion);
@@ -2589,6 +2634,8 @@ public class GrupLac {
 		String autores = "";
 		String referencia = "";
 		String anio = "";
+
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_MASINFORMACION, Constantes.MASINFORMACION);
 
 		ArrayList<Produccion> masInformacionAux = new ArrayList<>();
 
@@ -2614,12 +2661,9 @@ public class GrupLac {
 				masInformacion.setAnio(anio);
 				masInformacion.setAutores(autores);
 				masInformacion.setReferencia(referencia);
-				Tipo tipo = new Tipo(Constantes.ID_PROYECTO, Constantes.PROYECTO);
+				Tipo tipo = new Tipo(Constantes.ID_PROYECTO, Constantes.PROYECTO, tipoProduccion);
 				masInformacion.setTipo(tipo);
 				masInformacion.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_MASINFORMACION,
-						Constantes.MASINFORMACION);
-				masInformacion.setTipoProduccion(tipoProduccion);
 				masInformacion.setRepetido("NO");
 				identificarRepetidos(masInformacionAux, masInformacion);
 				masInformacionAux.add(masInformacion);
@@ -2642,6 +2686,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2652,7 +2698,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("NOMBRE DEL PRODUCTO:")) {
 
-				tipo = new Tipo(Constantes.ID_OBRA, Constantes.OBRA);
+				tipo = new Tipo(Constantes.ID_OBRA, Constantes.OBRA, tipoProduccion);
 
 				// Autores
 				int cont = i + 1;
@@ -2676,8 +2722,6 @@ public class GrupLac {
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
 				produccionArte.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-				produccionArte.setTipoProduccion(tipoProduccion);
 				produccionArte.setRepetido("NO");
 				identificarRepetidos(prodArteAux, produccionArte);
 				prodArteAux.add(produccionArte);
@@ -2696,6 +2740,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2706,7 +2752,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("NOMBRE DEL PRODUCTO:")) {
 
-				tipo = new Tipo(Constantes.ID_ACUERDO_LICENCIA, Constantes.ACUERDO_LICENCIA);
+				tipo = new Tipo(Constantes.ID_ACUERDO_LICENCIA, Constantes.ACUERDO_LICENCIA, tipoProduccion);
 
 				// Autores
 				int cont = i + 1;
@@ -2729,8 +2775,6 @@ public class GrupLac {
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
 				produccionArte.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-				produccionArte.setTipoProduccion(tipoProduccion);
 				produccionArte.setRepetido("NO");
 				identificarRepetidos(prodArteAux, produccionArte);
 				prodArteAux.add(produccionArte);
@@ -2749,6 +2793,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2759,7 +2805,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("NOMBRE DE LA EMPRESA CREATIVA:")) {
 
-				tipo = new Tipo(Constantes.ID_INDUSTRIA_CREATIVA, Constantes.INDUSTRIA_CREATIVA);
+				tipo = new Tipo(Constantes.ID_INDUSTRIA_CREATIVA, Constantes.INDUSTRIA_CREATIVA, tipoProduccion);
 
 				// Autores
 				int cont = i + 1;
@@ -2781,8 +2827,6 @@ public class GrupLac {
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
 				produccionArte.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-				produccionArte.setTipoProduccion(tipoProduccion);
 				produccionArte.setRepetido("NO");
 				identificarRepetidos(prodArteAux, produccionArte);
 				prodArteAux.add(produccionArte);
@@ -2801,6 +2845,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
+		
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2811,7 +2857,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("NOMBRE DEL EVENTO:")) {
 
-				tipo = new Tipo(Constantes.ID_EVENTO_ARTISTICO, Constantes.EVENTO_ARTISTICO);
+				tipo = new Tipo(Constantes.ID_EVENTO_ARTISTICO, Constantes.EVENTO_ARTISTICO, tipoProduccion);
 
 				// Autores
 				int cont = i + 1;
@@ -2833,8 +2879,6 @@ public class GrupLac {
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
 				produccionArte.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-				produccionArte.setTipoProduccion(tipoProduccion);
 				produccionArte.setRepetido("NO");
 				identificarRepetidos(prodArteAux, produccionArte);
 				prodArteAux.add(produccionArte);
@@ -2853,6 +2897,8 @@ public class GrupLac {
 		String referencia = "";
 		String anio = "";
 
+		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
+		
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2863,7 +2909,7 @@ public class GrupLac {
 
 			if (elem.get(i).contains("NOMBRE DEL TALLER:")) {
 
-				tipo = new Tipo(Constantes.ID_TALLER_CREATIVO, Constantes.TALLER_CREATIVO);
+				tipo = new Tipo(Constantes.ID_TALLER_CREATIVO, Constantes.TALLER_CREATIVO, tipoProduccion);
 
 				// Autores
 				int cont = i;
@@ -2887,8 +2933,6 @@ public class GrupLac {
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
 				produccionArte.setGrupo(grupo);
-				TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-				produccionArte.setTipoProduccion(tipoProduccion);
 				produccionArte.setRepetido("NO");
 				identificarRepetidos(prodArteAux, produccionArte);
 				prodArteAux.add(produccionArte);

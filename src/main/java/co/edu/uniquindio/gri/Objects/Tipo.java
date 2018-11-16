@@ -7,7 +7,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,12 +42,17 @@ public class Tipo implements Serializable {
 	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica> produccionBibliograficaG = new ArrayList<co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica>();
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "TIPOPRODUCCION_ID")
+	private TipoProduccion tipoProduccion;
+	
 	public Tipo() {
 	}
 
-	public Tipo(long id, String nombre) {
+	public Tipo(long id, String nombre, TipoProduccion tipoProduccion) {
 		this.id = id;
 		this.nombre = nombre;
+		this.tipoProduccion = tipoProduccion;
 	}
 
 	public long getId() {
@@ -94,6 +102,14 @@ public class Tipo implements Serializable {
 	public void setProduccionBibliograficaG(
 			List<co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica> produccionBibliograficaG) {
 		this.produccionBibliograficaG = produccionBibliograficaG;
+	}
+
+	public TipoProduccion getTipoProduccion() {
+		return tipoProduccion;
+	}
+
+	public void setTipoProduccion(TipoProduccion tipoProduccion) {
+		this.tipoProduccion = tipoProduccion;
 	}
 
 }

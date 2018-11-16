@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import co.edu.uniquindio.gri.CvLac.Produccion;
-
 @Entity(name = "TIPOPRODUCCION")
 @Table(name = "TIPOPRODUCCION", schema = "gri")
 public class TipoProduccion implements Serializable {
@@ -25,12 +23,9 @@ public class TipoProduccion implements Serializable {
 
 	@Column(name = "NOMBRE", length = 100)
 	private String nombre;
-
+	
 	@OneToMany(mappedBy = "tipoProduccion", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Produccion> produccion = new ArrayList<Produccion>();
-
-	@OneToMany(mappedBy = "tipoProduccion", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<co.edu.uniquindio.gri.GrupLac.Produccion> produccionG= new ArrayList<co.edu.uniquindio.gri.GrupLac.Produccion>();
+	private List<Tipo> tipos = new ArrayList<Tipo>();
 
 	public TipoProduccion() {
 	}
@@ -56,20 +51,12 @@ public class TipoProduccion implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Produccion> getProduccion() {
-		return produccion;
+	public List<Tipo> getTipos() {
+		return tipos;
 	}
 
-	public void setProduccion(List<Produccion> produccion) {
-		this.produccion = produccion;
+	public void setTipos(List<Tipo> tipos) {
+		this.tipos = tipos;
 	}
-
-	public List<co.edu.uniquindio.gri.GrupLac.Produccion> getProduccionG() {
-		return produccionG;
-	}
-
-	public void setProduccionG(List<co.edu.uniquindio.gri.GrupLac.Produccion> produccionG) {
-		this.produccionG = produccionG;
-	}
-
+	
 }

@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import co.edu.uniquindio.gri.Objects.Tipo;
-import co.edu.uniquindio.gri.Objects.TipoProduccion;
 
 @Entity(name = "PRODUCCIONESG")
 @Table(name = "PRODUCCIONESG", schema = "gri")
@@ -39,10 +38,6 @@ public class Produccion implements Serializable {
 	private String repetido;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TIPOPRODUCCION_ID")
-	private TipoProduccion tipoProduccion;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TIPO_ID")
 	private Tipo tipo;
 
@@ -51,13 +46,12 @@ public class Produccion implements Serializable {
 	private Grupo grupo;
 
 	public Produccion(long id, String autores, String anio, String referencia, Tipo tipo, String repetido,
-			TipoProduccion tipoProduccion, Grupo grupo) {
+			Grupo grupo) {
 		this.id = id;
 		this.autores = autores;
 		this.anio = anio;
 		this.referencia = referencia;
 		this.tipo = tipo;
-		this.tipoProduccion = tipoProduccion;
 		this.grupo = grupo;
 	}
 
@@ -104,14 +98,6 @@ public class Produccion implements Serializable {
 		this.repetido = repetido;
 	}
 
-	public TipoProduccion getTipoProduccion() {
-		return tipoProduccion;
-	}
-
-	public void setTipoProduccion(TipoProduccion tipoProduccion) {
-		this.tipoProduccion = tipoProduccion;
-	}
-
 	public Grupo getGrupo() {
 		return grupo;
 	}
@@ -127,5 +113,5 @@ public class Produccion implements Serializable {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	
+
 }

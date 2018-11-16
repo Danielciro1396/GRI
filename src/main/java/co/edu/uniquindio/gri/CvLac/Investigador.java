@@ -36,6 +36,12 @@ public class Investigador implements Serializable {
 	@Column(name = "NIVELACADEMICO", length = 200)
 	private String nivelAcademico;
 
+	@Column(name = "ESTADO", length = 50)
+	private String estado;
+
+	@Column(name = "PERTENENCIA", length = 50)
+	private String pertenencia;
+
 	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Idiomas> idiomas = new ArrayList<Idiomas>();
 
@@ -53,13 +59,15 @@ public class Investigador implements Serializable {
 	@ManyToMany(mappedBy = "investigadores", cascade = CascadeType.ALL)
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, List<Idiomas> idiomas,
-			List<LineasInvestigacion> lineasInvestigacion, List<Produccion> producciones,
-			List<ProduccionBibliografica> produccionesBibliograficas) {
+	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String estado,
+			String pertenencia, List<Idiomas> idiomas, List<LineasInvestigacion> lineasInvestigacion,
+			List<Produccion> producciones, List<ProduccionBibliografica> produccionesBibliograficas) {
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.nivelAcademico = nivelAcademico;
+		this.estado = estado;
+		this.pertenencia = pertenencia;
 		this.idiomas = idiomas;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccionesBibliograficas = produccionesBibliograficas;
@@ -99,6 +107,22 @@ public class Investigador implements Serializable {
 
 	public void setNivelAcademico(String nivelAcademico) {
 		this.nivelAcademico = nivelAcademico;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getPertenencia() {
+		return pertenencia;
+	}
+
+	public void setPertenencia(String pertenencia) {
+		this.pertenencia = pertenencia;
 	}
 
 	public List<Idiomas> getIdiomas() {

@@ -133,6 +133,6 @@ public class Constantes {
 	public static final String CONSULTORIA = "CONSULTORÍA/INFORME TÉCNICO";
 	public static final int ID_CARTA_MAPA = 53;
 	public static final String CARTA_MAPA = "CARTA/MAPA";
-	public static final int ID_OTRO = 53;
-	public static final String OTRO = "OTRO";
+	public static final int ID_TUTORIA = 54;
+	public static final String TUTORIA = "TUTORIA";
 }
