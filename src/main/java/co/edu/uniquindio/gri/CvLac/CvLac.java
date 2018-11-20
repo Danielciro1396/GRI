@@ -892,6 +892,7 @@ public class CvLac {
 							lineas.add(lineaInvestigacion);
 						}
 					} catch (Exception e) {
+						e.printStackTrace();
 					}
 
 					try {
@@ -903,6 +904,7 @@ public class CvLac {
 							}
 						}
 					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				}
 

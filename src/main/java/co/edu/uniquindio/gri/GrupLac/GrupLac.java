@@ -1158,6 +1158,7 @@ public class GrupLac {
 
 					grupo.setLineasInvestigacion(lineas);
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 
 			}

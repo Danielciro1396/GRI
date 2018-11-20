@@ -27,8 +27,8 @@ public class Constantes {
 	 */
 	public static final int ID_CURSO_CORTO = 0;
 	public static final String CURSO_CORTO = "CURSOS DE CORTA DURACIÓN";
-	public static final int ID_TRABAJO_DIRIGIDO = 1;
-	public static final String TRABAJO_DIRIGIDO = "TRABAJO DIRIGIDO/TUTORÍA";
+	public static final int ID_TUTORIA = 1;
+	public static final String TUTORIA = "TUTORIA";
 	public static final int ID_JURADO_COMITE_EVALUADOR = 2;
 	public static final String JURADO_COMITE_EVALUADOR = "JURADO EN COMITÉ DE EVALUACIÓN";
 	public static final int ID_PARTICIPACION_COMITE_EVALUADOR = 3;
@@ -133,6 +133,4 @@ public class Constantes {
 	public static final String CONSULTORIA = "CONSULTORÍA/INFORME TÉCNICO";
 	public static final int ID_CARTA_MAPA = 53;
 	public static final String CARTA_MAPA = "CARTA/MAPA";
-	public static final int ID_TUTORIA = 54;
-	public static final String TUTORIA = "TUTORIA";
 }
