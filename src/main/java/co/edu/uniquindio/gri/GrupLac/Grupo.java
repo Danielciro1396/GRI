@@ -46,22 +46,22 @@ public class Grupo implements Serializable {
 	@Column(name = "CATEGORIA", length = 300)
 	private String categoria;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "GRUPOS_LINEAS", joinColumns = { @JoinColumn(name = "GRUPOS_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "LINEASINVESTIGACION_ID") }, schema = "gri")
 	private List<LineasInvestigacion> lineasInvestigacion = new ArrayList<LineasInvestigacion>();
 
-	@OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "grupo", cascade = CascadeType.MERGE)
 	private List<Produccion> produccion = new ArrayList<Produccion>();
 
-	@OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "grupo", cascade = CascadeType.MERGE)
 	private List<ProduccionBibliografica> produccionBibliografica = new ArrayList<ProduccionBibliografica>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CENTROS_ID")
 	private Centro centro;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "PROGRAMAS_GRUPOS", joinColumns = { @JoinColumn(name = "GRUPOS_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "PROGRAMAS_ID") }, schema = "gri")
 	private List<Programa> programas = new ArrayList<Programa>();

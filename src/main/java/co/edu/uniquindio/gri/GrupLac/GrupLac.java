@@ -68,8 +68,14 @@ public class GrupLac {
 		long stopTime = 0;
 		long elapsedTime = 0;
 		gruposInicial = leerDataSet();
-		ExecutorService executor = Executors.newFixedThreadPool(30);
+		ExecutorService executor = Executors.newFixedThreadPool(1);
 		for (int i = 0; i < urlSet.size(); i++) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Runnable worker = new ArrayThread(urlSet.get(i), i, this, gruposInicial.get(i));
 			executor.execute(worker);
 		}
@@ -117,10 +123,11 @@ public class GrupLac {
 		Response response = null;
 
 		try {
-			response = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(300000).validateTLSCertificates(false)
+			response = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(0).validateTLSCertificates(false)
 					.ignoreHttpErrors(true).execute();
 		} catch (IOException ex) {
-			System.out.println("Excepción al obtener el Status Code: " + ex.getMessage());
+
+			return getStatusConnectionCode(url);
 		}
 		return response.statusCode();
 	}
@@ -138,9 +145,9 @@ public class GrupLac {
 
 		Document doc = null;
 		try {
-			doc = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(300000).validateTLSCertificates(false).get();
+			doc = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(0).validateTLSCertificates(false).get();
 		} catch (IOException ex) {
-			System.out.println("Excepción al obtener el HTML de la página " + ex.getMessage());
+			return getHtmlDocument(url);
 		}
 		return doc;
 	}
@@ -2847,7 +2854,7 @@ public class GrupLac {
 		String anio = "";
 
 		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-		
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();
@@ -2899,7 +2906,7 @@ public class GrupLac {
 		String anio = "";
 
 		TipoProduccion tipoProduccion = new TipoProduccion(Constantes.ID_ARTE, Constantes.ARTE);
-		
+
 		Tipo tipo = new Tipo();
 
 		ArrayList<Produccion> prodArteAux = new ArrayList<>();

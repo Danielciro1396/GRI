@@ -24,10 +24,10 @@ public class Facultad implements Serializable {
 	@Column(name = "NOMBRE")
 	private String nombre;
 
-	@OneToMany(mappedBy = "facultad", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "facultad", cascade = CascadeType.MERGE)
 	private List<Centro> centros = new ArrayList<>();
 
-	@OneToMany(mappedBy = "facultad", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "facultad", cascade = CascadeType.MERGE)
 	private List<Programa> programas = new ArrayList<>();
 
 	public Facultad() {

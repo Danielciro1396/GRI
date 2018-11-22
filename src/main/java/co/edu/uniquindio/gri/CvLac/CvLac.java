@@ -39,10 +39,11 @@ public class CvLac {
 		Response response = null;
 
 		try {
-			response = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(300000).validateTLSCertificates(false)
+			response = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(0).validateTLSCertificates(false)
 					.ignoreHttpErrors(true).execute();
 		} catch (IOException ex) {
-			System.out.println("Excepción al obtener el Status Code: " + ex.getMessage());
+
+			return getStatusConnectionCode(url);
 		}
 		return response.statusCode();
 	}
@@ -60,9 +61,10 @@ public class CvLac {
 
 		Document doc = null;
 		try {
-			doc = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(300000).validateTLSCertificates(false).get();
+			doc = Jsoup.connect(url).userAgent("Mozilla/5.0").timeout(0).validateTLSCertificates(false).get();
 		} catch (IOException ex) {
-			System.out.println("Excepción al obtener el HTML de la página " + ex.getMessage());
+
+			return getHtmlDocument(url);
 		}
 		return doc;
 	}
@@ -892,7 +894,7 @@ public class CvLac {
 							lineas.add(lineaInvestigacion);
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+//						e.printStackTrace();
 					}
 
 					try {

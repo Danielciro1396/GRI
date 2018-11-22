@@ -30,10 +30,10 @@ public class LineasInvestigacion implements Serializable {
 	@Column(name = "NOMBRE", length = 400)
 	private String nombre;
 
-	@ManyToMany(mappedBy = "lineasInvestigacion", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "lineasInvestigacion", cascade = CascadeType.MERGE)
 	private List<Investigador> investigadores = new ArrayList<Investigador>();
 
-	@ManyToMany(mappedBy = "lineasInvestigacion", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "lineasInvestigacion", cascade = CascadeType.MERGE)
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 
 	public LineasInvestigacion() {

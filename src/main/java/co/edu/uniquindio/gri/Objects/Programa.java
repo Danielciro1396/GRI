@@ -33,7 +33,7 @@ public class Programa implements Serializable {
 	@JoinColumn(name = "FACULTADES_ID")
 	private Facultad facultad;
 
-	@ManyToMany(mappedBy = "programas", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "programas", cascade = CascadeType.MERGE)
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 
 	public Programa() {

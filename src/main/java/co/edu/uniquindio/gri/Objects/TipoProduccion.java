@@ -24,7 +24,7 @@ public class TipoProduccion implements Serializable {
 	@Column(name = "NOMBRE", length = 100)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "tipoProduccion", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tipoProduccion", cascade = CascadeType.MERGE)
 	private List<Tipo> tipos = new ArrayList<Tipo>();
 
 	public TipoProduccion() {

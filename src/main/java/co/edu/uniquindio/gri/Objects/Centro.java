@@ -33,7 +33,7 @@ public class Centro implements Serializable {
 	@JoinColumn(name = "FACULTADES_ID")
 	private Facultad facultad;
 
-	@OneToMany(mappedBy = "centro", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "centro", cascade = CascadeType.MERGE)
 	private List<Grupo> grupo = new ArrayList<>();
 
 	public Centro() {

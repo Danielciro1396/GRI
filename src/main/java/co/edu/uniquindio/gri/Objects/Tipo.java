@@ -30,16 +30,16 @@ public class Tipo implements Serializable {
 	@Column(name = "NOMBRE", length = 100)
 	private String nombre;
 
-	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tipo", cascade = CascadeType.MERGE)
 	private List<Produccion> produccion = new ArrayList<Produccion>();
 
-	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tipo", cascade = CascadeType.MERGE)
 	private List<ProduccionBibliografica> produccionBibliografica = new ArrayList<ProduccionBibliografica>();
 
-	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tipo", cascade = CascadeType.MERGE)
 	private List<co.edu.uniquindio.gri.GrupLac.Produccion> produccionG = new ArrayList<co.edu.uniquindio.gri.GrupLac.Produccion>();
 
-	@OneToMany(mappedBy = "tipo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "tipo", cascade = CascadeType.MERGE)
 	private List<co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica> produccionBibliograficaG = new ArrayList<co.edu.uniquindio.gri.GrupLac.ProduccionBibliografica>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
