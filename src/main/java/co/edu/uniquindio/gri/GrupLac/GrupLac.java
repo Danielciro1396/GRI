@@ -28,13 +28,13 @@ import co.edu.uniquindio.gri.Objects.TipoProduccion;
 
 public class GrupLac {
 
-	ArrayList<String> urlSet;
+	List<String> urlSet = Collections.synchronizedList(new ArrayList<String>());
+	
+	List<String> urlSetInvestigadores = Collections.synchronizedList(new ArrayList<String>());
 
-	ArrayList<String> urlSetInvestigadores = new ArrayList<>();
+	public EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
 
-	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
-
-	public static EntityManager manager = emf.createEntityManager();
+	public EntityManager manager = emf.createEntityManager();
 
 	// Nombre del grupo de investigacion
 	String nombreGrupo = "";
@@ -68,12 +68,11 @@ public class GrupLac {
 		long stopTime = 0;
 		long elapsedTime = 0;
 		gruposInicial = leerDataSet();
-		ExecutorService executor = Executors.newFixedThreadPool(1);
+		ExecutorService executor = Executors.newFixedThreadPool(30);
 		for (int i = 0; i < urlSet.size(); i++) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Runnable worker = new ArrayThread(urlSet.get(i), i, this, gruposInicial.get(i));
@@ -1181,34 +1180,58 @@ public class GrupLac {
 	 * @param grupo
 	 */
 	public void extraerIntegrantes(ArrayList<String> elem, Grupo grupo) {
+
+
 		String link = "";
+		
+		boolean encontrado=false;
+
 		for (int i = 0; i < elem.size(); i++) {
 
 			if (elem.get(i).contains(".-")) {
 				link = elem.get(i + 1);
 				if (!urlSetInvestigadores.contains(link)) {
-					if (elem.get(i + 4).contains("Actual")) {
+					if (elem.get(i + 3).contains("Actual")) {
 						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
+						grupo.getInvestigadores().add(auxInvestigador);
+						urlSetInvestigadores.add(link);
+					} else if (elem.get(i + 4).contains("Actual")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
 						grupo.getInvestigadores().add(auxInvestigador);
 						urlSetInvestigadores.add(link);
 					} else if (elem.get(i + 5).contains("Actual")) {
 						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
 						grupo.getInvestigadores().add(auxInvestigador);
 						urlSetInvestigadores.add(link);
-					} else if (elem.get(i + 4).contains("-")) {
+					} else {
 						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL");
-						grupo.getInvestigadores().add(auxInvestigador);
-						urlSetInvestigadores.add(link);
-					} else if (elem.get(i + 5).contains("-")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL");
+						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL",encontrado);
 						grupo.getInvestigadores().add(auxInvestigador);
 						urlSetInvestigadores.add(link);
 					}
 
+				}else {
+					encontrado=true;
+					if (elem.get(i + 3).contains("Actual")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
+						grupo.getInvestigadores().add(auxInvestigador);
+					} else if (elem.get(i + 4).contains("Actual")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
+						grupo.getInvestigadores().add(auxInvestigador);
+					} else if (elem.get(i + 5).contains("Actual")) {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
+						grupo.getInvestigadores().add(auxInvestigador);
+					} else {
+						CvLac cvLac = new CvLac();
+						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL",encontrado);
+						grupo.getInvestigadores().add(auxInvestigador);
+					}
 				}
 
 			}
@@ -2994,6 +3017,7 @@ public class GrupLac {
 	}
 
 	public void guardarDatos(List<Grupo> grupos) {
+		
 		manager.clear();
 		for (int i = 0; i < grupos.size(); i++) {
 			manager.getTransaction().begin();
