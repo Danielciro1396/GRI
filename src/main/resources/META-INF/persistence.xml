@@ -19,6 +19,7 @@
    <class>co.edu.uniquindio.gri.Objects.Programa</class>
    <class>co.edu.uniquindio.gri.Objects.TipoProduccion</class>
    <class>co.edu.uniquindio.gri.Objects.Tipo</class>
+   <class>co.edu.uniquindio.gri.Objects.GruposInves</class>
   
     <properties>
         <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

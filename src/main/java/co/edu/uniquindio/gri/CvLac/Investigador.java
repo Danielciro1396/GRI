@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import co.edu.uniquindio.gri.GrupLac.Grupo;
+import co.edu.uniquindio.gri.Objects.GruposInves;
 import co.edu.uniquindio.gri.Objects.LineasInvestigacion;
 
 @Entity(name = "INVESTIGADORES")
@@ -36,9 +36,6 @@ public class Investigador implements Serializable {
 	@Column(name = "NIVELACADEMICO", length = 200)
 	private String nivelAcademico;
 
-	@Column(name = "ESTADO", length = 50)
-	private String estado;
-
 	@Column(name = "PERTENENCIA", length = 50)
 	private String pertenencia;
 
@@ -56,21 +53,21 @@ public class Investigador implements Serializable {
 	@OneToMany(mappedBy = "investigador", cascade = CascadeType.MERGE)
 	private List<ProduccionBibliografica> produccionesBibliograficas = new ArrayList<ProduccionBibliografica>();
 
-	@ManyToMany(mappedBy = "investigadores", cascade = CascadeType.ALL)
-	private List<Grupo> grupos = new ArrayList<Grupo>();
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
+	private List<GruposInves> grupos = new ArrayList<GruposInves>();
 
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String estado,
-			String pertenencia, List<Idiomas> idiomas, List<LineasInvestigacion> lineasInvestigacion,
-			List<Produccion> producciones, List<ProduccionBibliografica> produccionesBibliograficas) {
+	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String pertenencia,
+			List<Idiomas> idiomas, List<LineasInvestigacion> lineasInvestigacion, List<Produccion> producciones,
+			List<ProduccionBibliografica> produccionesBibliograficas, List<GruposInves> grupos) {
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.nivelAcademico = nivelAcademico;
-		this.estado = estado;
 		this.pertenencia = pertenencia;
 		this.idiomas = idiomas;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccionesBibliograficas = produccionesBibliograficas;
+		this.grupos = grupos;
 
 	}
 
@@ -107,14 +104,6 @@ public class Investigador implements Serializable {
 
 	public void setNivelAcademico(String nivelAcademico) {
 		this.nivelAcademico = nivelAcademico;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getPertenencia() {
@@ -157,11 +146,11 @@ public class Investigador implements Serializable {
 		this.lineasInvestigacion = lineasInvestigacion;
 	}
 
-	public List<Grupo> getGrupos() {
+	public List<GruposInves> getGrupos() {
 		return grupos;
 	}
 
-	public void setGrupos(List<Grupo> grupos) {
+	public void setGrupos(List<GruposInves> grupos) {
 		this.grupos = grupos;
 	}
 

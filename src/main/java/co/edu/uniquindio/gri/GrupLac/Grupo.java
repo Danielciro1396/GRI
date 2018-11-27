@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import co.edu.uniquindio.gri.CvLac.Investigador;
 import co.edu.uniquindio.gri.Objects.Centro;
+import co.edu.uniquindio.gri.Objects.GruposInves;
 import co.edu.uniquindio.gri.Objects.LineasInvestigacion;
 import co.edu.uniquindio.gri.Objects.Programa;
 
@@ -66,14 +67,12 @@ public class Grupo implements Serializable {
 			@JoinColumn(name = "PROGRAMAS_ID") }, schema = "gri")
 	private List<Programa> programas = new ArrayList<Programa>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "GRUPOS_INVES", joinColumns = { @JoinColumn(name = "GRUPOS_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "INVESTIGADORES_ID") }, schema = "gri")
-	private List<Investigador> investigadores = new ArrayList<Investigador>();
+	@OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
+	private List<GruposInves> investigadores = new ArrayList<GruposInves>();
 
 	public Grupo(long id, String nombre, String areaConocimiento, String anioFundacion, String lider, String categoria,
 			List<LineasInvestigacion> lineasInvestigacion, List<Produccion> produccion,
-			List<ProduccionBibliografica> produccionBibliografica, Centro centro) {
+			List<ProduccionBibliografica> produccionBibliografica, Centro centro, List<GruposInves> investigadores) {
 		this.id = id;
 		this.nombre = nombre;
 		this.areaConocimiento = areaConocimiento;
@@ -84,6 +83,7 @@ public class Grupo implements Serializable {
 		this.produccion = produccion;
 		this.produccionBibliografica = produccionBibliografica;
 		this.centro = centro;
+		this.investigadores = investigadores;
 	}
 
 	public Grupo() {
@@ -178,22 +178,23 @@ public class Grupo implements Serializable {
 		this.programas = programas;
 	}
 
-	public List<Investigador> getInvestigadores() {
-		return investigadores;
-	}
-
-	public void setInvestigadores(List<Investigador> investigadores) {
-		this.investigadores = investigadores;
-	}
-
 	public void removeLineasInvestigacion(LineasInvestigacion lineas) {
 		lineasInvestigacion.remove(lineas);
 		lineas.getGrupos().remove(this);
 	}
 
-	public void removeInvestigador(Investigador investigador) {
-		investigadores.remove(investigador);
-		investigador.getGrupos().remove(this);
+	public List<GruposInves> getInvestigadores() {
+		return investigadores;
+	}
+
+	public void setInvestigadores(List<GruposInves> investigadores) {
+		this.investigadores = investigadores;
+	}
+
+	public void addInvestigador(Investigador investigador, String estado) {
+		GruposInves gruposInves = new GruposInves(this, investigador, estado);
+		investigadores.add(gruposInves);
+		investigador.getGrupos().add(gruposInves);
 	}
 
 	public void removePrograma(Programa programa) {

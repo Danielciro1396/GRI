@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Hibernate;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,6 +23,7 @@ import co.edu.uniquindio.gri.CvLac.CvLac;
 import co.edu.uniquindio.gri.CvLac.Investigador;
 import co.edu.uniquindio.gri.Master.ArrayThread;
 import co.edu.uniquindio.gri.Master.Constantes;
+import co.edu.uniquindio.gri.Objects.GruposInves;
 import co.edu.uniquindio.gri.Objects.LineasInvestigacion;
 import co.edu.uniquindio.gri.Objects.Tipo;
 import co.edu.uniquindio.gri.Objects.TipoProduccion;
@@ -29,8 +31,6 @@ import co.edu.uniquindio.gri.Objects.TipoProduccion;
 public class GrupLac {
 
 	List<String> urlSet = Collections.synchronizedList(new ArrayList<String>());
-	
-	List<String> urlSetInvestigadores = Collections.synchronizedList(new ArrayList<String>());
 
 	public EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
 
@@ -51,11 +51,7 @@ public class GrupLac {
 	 */
 	List<Grupo> gruposInicial = Collections.synchronizedList(new ArrayList<Grupo>());
 
-	/*
-	 * Lista sincronizada en la que se guardan todos los investidagores junto a su
-	 * respectiva informacion
-	 */
-	public List<Investigador> investigadores = Collections.synchronizedList(new ArrayList<Investigador>());
+	public List<GruposInves> grupoInves = Collections.synchronizedList(new ArrayList<GruposInves>());
 
 	/**
 	 * Este metodo se encarga de hacer el llamado al metodo que lee un archivo plano
@@ -1181,59 +1177,33 @@ public class GrupLac {
 	 */
 	public void extraerIntegrantes(ArrayList<String> elem, Grupo grupo) {
 
-
 		String link = "";
-		
-		boolean encontrado=false;
 
 		for (int i = 0; i < elem.size(); i++) {
 
 			if (elem.get(i).contains(".-")) {
 				link = elem.get(i + 1);
-				if (!urlSetInvestigadores.contains(link)) {
-					if (elem.get(i + 3).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-						urlSetInvestigadores.add(link);
-					} else if (elem.get(i + 4).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-						urlSetInvestigadores.add(link);
-					} else if (elem.get(i + 5).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-						urlSetInvestigadores.add(link);
-					} else {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-						urlSetInvestigadores.add(link);
-					}
-
-				}else {
-					encontrado=true;
-					if (elem.get(i + 3).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-					} else if (elem.get(i + 4).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-					} else if (elem.get(i + 5).contains("Actual")) {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-					} else {
-						CvLac cvLac = new CvLac();
-						Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL",encontrado);
-						grupo.getInvestigadores().add(auxInvestigador);
-					}
+				if (elem.get(i + 3).contains("Actual")) {
+					CvLac cvLac = new CvLac();
+					Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+					GruposInves gruposInves = new GruposInves(grupo, auxInvestigador, "ACTUAL");
+					grupoInves.add(gruposInves);
+				} else if (elem.get(i + 4).contains("Actual")) {
+					CvLac cvLac = new CvLac();
+					Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+					GruposInves gruposInves = new GruposInves(grupo, auxInvestigador, "ACTUAL");
+					grupoInves.add(gruposInves);
+				} else if (elem.get(i + 5).contains("Actual")) {
+					CvLac cvLac = new CvLac();
+					Investigador auxInvestigador = cvLac.extraer(link, "ACTUAL");
+					GruposInves gruposInves = new GruposInves(grupo, auxInvestigador, "ACTUAL");
+					grupoInves.add(gruposInves);
+				} else {
+					CvLac cvLac = new CvLac();
+					Investigador auxInvestigador = cvLac.extraer(link, "NO ACTUAL");
+					GruposInves gruposInves = new GruposInves(grupo, auxInvestigador, "NO ACTUAL");
+					grupoInves.add(gruposInves);
 				}
-
 			}
 		}
 	}
@@ -3017,15 +2987,15 @@ public class GrupLac {
 	}
 
 	public void guardarDatos(List<Grupo> grupos) {
-		
+
 		manager.clear();
-		for (int i = 0; i < grupos.size(); i++) {
+
+		for (int i = 0; i < grupoInves.size(); i++) {
 			manager.getTransaction().begin();
-
-			manager.merge(grupos.get(i));
-
+			manager.merge(grupoInves.get(i));
 			manager.getTransaction().commit();
 		}
+
 	}
 
 }
