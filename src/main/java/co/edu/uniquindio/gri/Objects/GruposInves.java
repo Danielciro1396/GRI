@@ -29,7 +29,7 @@ public class GruposInves implements Serializable {
     @JoinColumn(name = "GRUPOS_ID")
 	private Grupo grupo;
  
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "INVESTIGADORES_ID")
     private Investigador investigador;
     

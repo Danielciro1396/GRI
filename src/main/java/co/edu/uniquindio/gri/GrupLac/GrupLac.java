@@ -59,9 +59,6 @@ public class GrupLac {
 	 */
 	public List<Grupo> scrapData() {
 
-		long startTime = System.currentTimeMillis();
-		long stopTime = 0;
-		long elapsedTime = 0;
 		gruposInicial = leerDataSet();
 		ExecutorService executor = Executors.newFixedThreadPool(30);
 		for (int i = 0; i < urlSet.size(); i++) {
@@ -75,11 +72,8 @@ public class GrupLac {
 		}
 		executor.shutdown();
 		while (!executor.isTerminated()) {
-			stopTime = System.currentTimeMillis();
-			elapsedTime = stopTime - startTime;
-
 		}
-		System.err.println(elapsedTime);
+		
 		return grupos;
 	}
 
@@ -91,7 +85,7 @@ public class GrupLac {
 		urlSet = new ArrayList<String>();
 
 		@SuppressWarnings("unchecked")
-		List<Grupo> grupos = (ArrayList<Grupo>) manager.createQuery("FROM GRUPOS WHERE ID='8166'").getResultList();
+		List<Grupo> grupos = (ArrayList<Grupo>) manager.createQuery("FROM GRUPOS").getResultList();
 		for (int i = 0; i < grupos.size(); i++) {
 			String cadena = "00000000000000" + grupos.get(i).getId();
 			cadena = cadena.substring(cadena.length() - Constantes.LINK_GRUPLAC, cadena.length());
@@ -795,8 +789,8 @@ public class GrupLac {
 					if (auxEvaluacion == null) {
 						grupo.setProduccion(extraerJurado(elemJuradoComite, grupo));
 					} else {
-						auxEvaluacion.addAll(extraerJurado(elemJuradoComite, grupo));
-						grupo.setProduccion(auxEvaluacion);
+							auxEvaluacion.addAll(extraerJurado(elemJuradoComite, grupo));
+							grupo.setProduccion(auxEvaluacion);						
 					}
 				}
 
@@ -2488,8 +2482,10 @@ public class GrupLac {
 					if (actual.contains("IDIOMA:")) {
 						int pos = actual.indexOf(",");
 						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")) {
+					} else if (actual.contains("AUTORES:")&& actual.length()>8) {
 						autores = actual.substring(9, actual.length() - 1);
+					}else {
+						autores = "NO ESPECIFICADO";
 					}
 					cont++;
 				}
@@ -3012,6 +3008,15 @@ public class GrupLac {
 		for (int i = 0; i < gruposInves.size(); i++) {
 			manager.getTransaction().begin();
 			manager.remove(gruposInves.get(i));
+			manager.getTransaction().commit();
+		}
+		
+		@SuppressWarnings("unchecked")
+		List<Investigador> investigadores = (ArrayList<Investigador>) manager.createQuery("FROM INVESTIGADORES")
+				.getResultList();
+		for (int i = 0; i < investigadores.size(); i++) {
+			manager.getTransaction().begin();
+			manager.remove(investigadores.get(i));
 			manager.getTransaction().commit();
 		}
 
