@@ -39,18 +39,18 @@ public class Investigador implements Serializable {
 	@Column(name = "PERTENENCIA", length = 50)
 	private String pertenencia;
 
-	@OneToMany(mappedBy = "investigador", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
 	private List<Idiomas> idiomas = new ArrayList<Idiomas>();
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "INVEST_LINEAS", joinColumns = { @JoinColumn(name = "INVESTIGADORES_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "LINEASINVESTIGACION_ID") }, schema = "gri")
 	private List<LineasInvestigacion> lineasInvestigacion = new ArrayList<LineasInvestigacion>();
 
-	@OneToMany(mappedBy = "investigador", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
 	private List<Produccion> producciones = new ArrayList<Produccion>();
 
-	@OneToMany(mappedBy = "investigador", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)
 	private List<ProduccionBibliografica> produccionesBibliograficas = new ArrayList<ProduccionBibliografica>();
 
 	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL)

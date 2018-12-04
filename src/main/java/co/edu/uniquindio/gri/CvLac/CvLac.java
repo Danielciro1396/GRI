@@ -1888,7 +1888,13 @@ public class CvLac {
 				// Autores
 				String general = elem.get(i + 1);
 				int inicio = general.indexOf("\"");
-				autores = general.substring(0, inicio - 2);
+				try {
+					autores = general.substring(0, inicio - 2);
+				} catch (Exception e) {
+					autores = "N/D";
+					System.err.println(investigador.getNombre() + " " + investigador.getId());
+				}
+
 				int cont = i + 1;
 				referencia = "";
 				while (cont < elem.size() && !elem.get(cont).contains("PRODUCCIÓN BIBLIOGRÁFICA")

@@ -25,7 +25,7 @@ public class GruposInves implements Serializable {
 	@Column(name = "ID")
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "GRUPOS_ID")
 	private Grupo grupo;
  

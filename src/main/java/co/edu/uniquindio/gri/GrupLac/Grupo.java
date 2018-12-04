@@ -47,15 +47,15 @@ public class Grupo implements Serializable {
 	@Column(name = "CATEGORIA", length = 300)
 	private String categoria;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE})
 	@JoinTable(name = "GRUPOS_LINEAS", joinColumns = { @JoinColumn(name = "GRUPOS_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "LINEASINVESTIGACION_ID") }, schema = "gri")
 	private List<LineasInvestigacion> lineasInvestigacion = new ArrayList<LineasInvestigacion>();
 
-	@OneToMany(mappedBy = "grupo", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "grupo", cascade = {CascadeType.MERGE,CascadeType.REMOVE})
 	private List<Produccion> produccion = new ArrayList<Produccion>();
 
-	@OneToMany(mappedBy = "grupo", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "grupo", cascade = {CascadeType.MERGE,CascadeType.REMOVE})
 	private List<ProduccionBibliografica> produccionBibliografica = new ArrayList<ProduccionBibliografica>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -67,7 +67,7 @@ public class Grupo implements Serializable {
 			@JoinColumn(name = "PROGRAMAS_ID") }, schema = "gri")
 	private List<Programa> programas = new ArrayList<Programa>();
 
-	@OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "grupo", cascade = CascadeType.MERGE)
 	private List<GruposInves> investigadores = new ArrayList<GruposInves>();
 
 	public Grupo(long id, String nombre, String areaConocimiento, String anioFundacion, String lider, String categoria,

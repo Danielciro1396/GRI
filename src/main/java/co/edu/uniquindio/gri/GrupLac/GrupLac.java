@@ -12,7 +12,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.Hibernate;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -92,7 +91,7 @@ public class GrupLac {
 		urlSet = new ArrayList<String>();
 
 		@SuppressWarnings("unchecked")
-		List<Grupo> grupos = (ArrayList<Grupo>) manager.createQuery("FROM GRUPOS").getResultList();
+		List<Grupo> grupos = (ArrayList<Grupo>) manager.createQuery("FROM GRUPOS WHERE ID='8166'").getResultList();
 		for (int i = 0; i < grupos.size(); i++) {
 			String cadena = "00000000000000" + grupos.get(i).getId();
 			cadena = cadena.substring(cadena.length() - Constantes.LINK_GRUPLAC, cadena.length());
@@ -2996,6 +2995,64 @@ public class GrupLac {
 			manager.getTransaction().commit();
 		}
 
+		for (int i = 0; i < grupos.size(); i++) {
+			manager.getTransaction().begin();
+			manager.merge(grupos.get(i));
+			manager.getTransaction().commit();
+		}
 	}
 
+	public void eliminarDatos() {
+
+		manager.clear();
+
+		@SuppressWarnings("unchecked")
+		List<GruposInves> gruposInves = (ArrayList<GruposInves>) manager.createQuery("FROM GRUPOS_INVES")
+				.getResultList();
+		for (int i = 0; i < gruposInves.size(); i++) {
+			manager.getTransaction().begin();
+			manager.remove(gruposInves.get(i));
+			manager.getTransaction().commit();
+		}
+
+		@SuppressWarnings("unchecked")
+		List<Produccion> produccionesg = (ArrayList<Produccion>) manager.createQuery("FROM PRODUCCIONESG")
+				.getResultList();
+		for (int i = 0; i < produccionesg.size(); i++) {
+			manager.getTransaction().begin();
+			manager.remove(produccionesg.get(i));
+			manager.getTransaction().commit();
+		}
+
+		@SuppressWarnings("unchecked")
+		List<ProduccionBibliografica> produccionesBibliograficasg = (ArrayList<ProduccionBibliografica>) manager
+				.createQuery("FROM PRODUCCIONBIBLIOGRAFICAG").getResultList();
+		for (int i = 0; i < produccionesBibliograficasg.size(); i++) {
+			manager.getTransaction().begin();
+			manager.remove(produccionesBibliograficasg.get(i));
+			manager.getTransaction().commit();
+		}
+
+		@SuppressWarnings("unchecked")
+		List<Grupo> grupos = (ArrayList<Grupo>) manager.createQuery("FROM GRUPOS").getResultList();
+		for (int i = 0; i < grupos.size(); i++) {
+			for (int j = 0; j < grupos.get(i).getLineasInvestigacion().size(); j++) {
+				grupos.get(i).removeLineasInvestigacion(grupos.get(i).getLineasInvestigacion().get(j));
+				j--;
+			}
+			manager.getTransaction().begin();
+			manager.merge(grupos.get(i));
+			manager.getTransaction().commit();
+		}
+
+		@SuppressWarnings("unchecked")
+		List<LineasInvestigacion> lineas = (ArrayList<LineasInvestigacion>) manager
+				.createQuery("FROM LINEASINVESTIGACION").getResultList();
+		for (int i = 0; i < lineas.size(); i++) {
+			manager.getTransaction().begin();
+			manager.remove(lineas.get(i));
+			manager.getTransaction().commit();
+		}
+
+	}
 }
