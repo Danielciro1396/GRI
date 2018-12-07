@@ -856,6 +856,7 @@ public class CvLac {
 			investigador.setId(id);
 			investigador.setCategoria("SIN CATEGORÍA");
 			investigador.setNivelAcademico("NO ESPECIFICADO");
+			investigador.setPertenencia("NO ESPECIFICADO");
 
 		} else {
 			try {
