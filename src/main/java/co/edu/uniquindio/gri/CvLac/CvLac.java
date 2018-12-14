@@ -720,11 +720,23 @@ public class CvLac {
 						}
 					}
 				}
-			} else {
+			} else if (estado.equals("NO ACTUAL")){
 				for (Element elem : entradas) {
 					if (elem.text().contains("Nombre en citaciones")) {
 						elemInfoPersonal.add(elem.toString());
 						elemInfoPersonal = limpiar(elemInfoPersonal);
+					}
+					if (elem.text().contains("Formación Académica")) {
+						ArrayList<String> aux = new ArrayList<>();
+						aux.add(elem.toString());
+						aux = limpiar(aux);
+						elemInfoPersonal.addAll(aux);
+					}
+					if (elem.text().contains("Experiencia profesional")) {
+						ArrayList<String> aux = new ArrayList<>();
+						aux.add(elem.toString());
+						aux = limpiar(aux);
+						elemInfoPersonal.addAll(aux);
 					}
 				}
 				auxInvestigador = extraerDatos(elemInfoPersonal, id, estado);
@@ -891,6 +903,8 @@ public class CvLac {
 								&& elemInfoPersonal.get(i + 2).equals("SI")) {
 							nomLinea = elemInfoPersonal.get(i).substring(0, elemInfoPersonal.get(i).length() - 1);
 							LineasInvestigacion lineaInvestigacion = new LineasInvestigacion();
+							nomLinea= StringUtils.stripAccents(nomLinea);
+							nomLinea= nomLinea.trim();
 							lineaInvestigacion.setNombre(nomLinea);
 							lineas.add(lineaInvestigacion);
 						}
@@ -926,7 +940,7 @@ public class CvLac {
 						investigador.setPertenencia("INVESTIGADOR EXTERNO");
 					}
 				} else {
-					investigador.setPertenencia("N/D");
+					investigador.setPertenencia("NO ESPECIFICADA");
 				}
 
 			} catch (Exception e) {

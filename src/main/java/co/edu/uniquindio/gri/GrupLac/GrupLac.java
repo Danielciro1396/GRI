@@ -1147,6 +1147,8 @@ public class GrupLac {
 					if (elemInfoGeneral.get(i).contains(".-")) {
 						nomLinea = elemInfoGeneral.get(i).substring(elemInfoGeneral.get(i).indexOf(".- ") + 3);
 						LineasInvestigacion lineasInvestigacion = new LineasInvestigacion();
+						nomLinea= StringUtils.stripAccents(nomLinea);
+						nomLinea= nomLinea.trim();
 						lineasInvestigacion.setNombre(nomLinea);
 						lineas.add(lineasInvestigacion);
 					}

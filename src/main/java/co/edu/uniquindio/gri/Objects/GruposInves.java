@@ -37,7 +37,6 @@ public class GruposInves implements Serializable {
 	private String estado;
  
 	public GruposInves() {
-		super();
 	}
 
 	public GruposInves(Grupo grupo, Investigador investigador, String estado) {
