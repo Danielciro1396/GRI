@@ -142,7 +142,7 @@ public class CvLac {
 						ArrayList<String> elemIdiomas = new ArrayList<>();
 						elemIdiomas.add(elem.toString());
 						elemIdiomas = limpiar(elemIdiomas);
-
+						
 						List<Idiomas> auxIdiomas = auxInvestigador.getIdiomas();
 						if (auxIdiomas == null) {
 							auxInvestigador.setIdiomas(extraerIdiomas(elemIdiomas, auxInvestigador));
@@ -963,7 +963,7 @@ public class CvLac {
 
 		ArrayList<Idiomas> idiomasAux = new ArrayList<>();
 
-		for (int i = 5; i < elem.size(); i++) {
+		for (int i = 5; i < elem.size()-1; i++) {
 			try {
 				Idiomas idioma = new Idiomas();
 
@@ -1319,8 +1319,8 @@ public class CvLac {
 
 								if (elem.get(k).startsWith("INSTITUCIÓN:")) {
 
-									anio = elem.get(k + 1).substring(elem.get(k + 1).indexOf(',') + 2,
-											elem.get(k + 1).indexOf(',') + 6);
+									anio = elem.get(k + 1).substring(elem.get(k + 1).lastIndexOf(',') - 4,
+											elem.get(k + 1).lastIndexOf(','));
 								}
 								if (elem.get(k).endsWith(":")) {
 									referencia += elem.get(k) + " ";
