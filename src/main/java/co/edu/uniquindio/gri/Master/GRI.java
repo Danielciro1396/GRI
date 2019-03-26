@@ -15,7 +15,7 @@ public class GRI {
 		grupLac.eliminarDatos();
 		
 		grupLac.guardarDatos(grupLac.scrapData());		
-		
+			
 		stopTime = System.currentTimeMillis();
 		elapsedTime = stopTime - startTime;
 		System.err.println(elapsedTime);

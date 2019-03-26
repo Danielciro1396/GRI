@@ -3,6 +3,7 @@ package co.edu.uniquindio.gri.CvLac;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection.Response;
@@ -11,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import co.edu.uniquindio.gri.GrupLac.GrupLac;
 import co.edu.uniquindio.gri.Master.Constantes;
 import co.edu.uniquindio.gri.Objects.LineasInvestigacion;
 import co.edu.uniquindio.gri.Objects.Tipo;
@@ -131,7 +133,14 @@ public class CvLac {
 				}
 
 				auxInvestigador = extraerDatos(elemInfoPersonal, id, estado);
-
+				
+				for (int i = 0; i < GrupLac.grupoInves.size(); i++) {
+					if (GrupLac.grupoInves.get(i).getInvestigador().getId()==id) {
+						return auxInvestigador;
+					}
+				}
+				
+				
 				for (Element elem : entradas) {
 
 					/*
@@ -142,7 +151,7 @@ public class CvLac {
 						ArrayList<String> elemIdiomas = new ArrayList<>();
 						elemIdiomas.add(elem.toString());
 						elemIdiomas = limpiar(elemIdiomas);
-						
+
 						List<Idiomas> auxIdiomas = auxInvestigador.getIdiomas();
 						if (auxIdiomas == null) {
 							auxInvestigador.setIdiomas(extraerIdiomas(elemIdiomas, auxInvestigador));
@@ -720,7 +729,7 @@ public class CvLac {
 						}
 					}
 				}
-			} else if (estado.equals("NO ACTUAL")){
+			} else if (estado.equals("NO ACTUAL")) {
 				for (Element elem : entradas) {
 					if (elem.text().contains("Nombre en citaciones")) {
 						elemInfoPersonal.add(elem.toString());
@@ -903,8 +912,8 @@ public class CvLac {
 								&& elemInfoPersonal.get(i + 2).equals("SI")) {
 							nomLinea = elemInfoPersonal.get(i).substring(0, elemInfoPersonal.get(i).length() - 1);
 							LineasInvestigacion lineaInvestigacion = new LineasInvestigacion();
-							nomLinea= StringUtils.stripAccents(nomLinea);
-							nomLinea= nomLinea.trim();
+							nomLinea = StringUtils.stripAccents(nomLinea);
+							nomLinea = nomLinea.trim();
 							lineaInvestigacion.setNombre(nomLinea);
 							lineas.add(lineaInvestigacion);
 						}
@@ -963,7 +972,7 @@ public class CvLac {
 
 		ArrayList<Idiomas> idiomasAux = new ArrayList<>();
 
-		for (int i = 5; i < elem.size()-1; i++) {
+		for (int i = 5; i < elem.size() - 1; i++) {
 			try {
 				Idiomas idioma = new Idiomas();
 
@@ -1317,11 +1326,13 @@ public class CvLac {
 									break;
 								}
 
-								if (elem.get(k).startsWith("INSTITUCIÓN:")) {
+								if (elem.get(k).startsWith("INSTITUCIÓN:") || elem.get(k).startsWith("REVISTA:")
+										|| elem.get(k).startsWith("EDITORIAL:")) {
 
 									anio = elem.get(k + 1).substring(elem.get(k + 1).lastIndexOf(',') - 4,
 											elem.get(k + 1).lastIndexOf(','));
 								}
+
 								if (elem.get(k).endsWith(":")) {
 									referencia += elem.get(k) + " ";
 								} else {
@@ -2818,4 +2829,6 @@ public class CvLac {
 			}
 		}
 	}
+	
+
 }

@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,7 +52,9 @@ public class GrupLac {
 	 */
 	List<Grupo> gruposInicial = Collections.synchronizedList(new ArrayList<Grupo>());
 
-	public List<GruposInves> grupoInves = Collections.synchronizedList(new ArrayList<GruposInves>());
+	public static List<GruposInves> grupoInves = Collections.synchronizedList(new ArrayList<GruposInves>());
+	
+	
 
 	/**
 	 * Este metodo se encarga de hacer el llamado al metodo que lee un archivo plano
@@ -1512,12 +1516,7 @@ public class GrupLac {
 
 			}
 
-			if (elem.get(i).contains("PAGINAS:")) {
-
-				int posAux = elem.get(i).indexOf(',');
-				anio = elem.get(i).substring(0, posAux);
-
-			}
+			anio=extraerAnio(referencia);
 
 			if (elem.get(i).contains("AUTORES:")) {
 				autores = elem.get(i).substring(9, elem.get(i).length() - 1);
@@ -1572,12 +1571,7 @@ public class GrupLac {
 
 			}
 
-			if (elem.get(i).contains("VOL.")) {
-
-				int posAux = elem.get(i).indexOf(',') + 2;
-				anio = elem.get(i).substring(posAux, posAux + 4);
-
-			}
+			anio=extraerAnio(referencia);
 
 			if (elem.get(i).contains("AUTORES:")) {
 				autores = elem.get(i).substring(9, elem.get(i).length() - 1);
@@ -1765,20 +1759,18 @@ public class GrupLac {
 			}
 
 			if (elem.get(i).contains("LIBRO: ISBN")) {
-				anio = elem.get(i).substring(0, elem.get(i).indexOf(','));
 				String aux = elem.get(i).substring(elem.get(i).indexOf("ISSN"));
 				int posAux = aux.indexOf(',');
 				id = aux.substring(4, posAux);
-
 			}
 
 			if (elem.get(i).contains("REVISTA: ISSN")) {
-				anio = elem.get(i).substring(0, elem.get(i).indexOf(','));
 				String aux = elem.get(i).substring(elem.get(i).indexOf("ISBN "));
 				int posAux = aux.indexOf(',');
 				id = aux.substring(4, posAux);
-
 			}
+			
+			anio=extraerAnio(referencia);
 
 			if (elem.get(i).contains("AUTORES:")) {
 				autores = elem.get(i).substring(9, elem.get(i).length() - 1);
@@ -1827,18 +1819,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += ", " + actual;
 
-					if (actual.contains(bandera)) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(4, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				produccionTecnica.setAnio(anio);
 				produccionTecnica.setAutores(autores);
 				produccionTecnica.setReferencia(referencia);
@@ -1882,20 +1870,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += ", " + actual;
 
-					if (actual.contains("NIT:")) {
-						int pos = actual.indexOf(",");
-						if (pos >= 3) {
-							anio = actual.substring(pos - 4, pos);
-						}
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(4, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				produccionTecnica.setAnio(anio);
 				produccionTecnica.setAutores(autores);
 				produccionTecnica.setReferencia(referencia);
@@ -1940,18 +1922,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("EDITORIAL:")) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(3, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -1992,18 +1970,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("PROYECTO DE INVESTIGACIÓN:")) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(0, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(3, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2056,18 +2030,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("DESDE")) {
-						int pos = actual.indexOf("-");
-						anio = actual.substring(pos - 4, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2122,23 +2092,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("AMBITO:")) {
-						int pos = actual.indexOf("-");
-						try {
-							anio = actual.substring(0, pos);
-						} catch (Exception e) {
-							anio = "N/D";
-						}
-
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(3, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2178,18 +2139,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains(": DESDE")) {
-						int pos = actual.length();
-						anio = actual.substring(pos - 4, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2232,18 +2189,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains(": DESDE")) {
-						int pos = actual.length();
-						anio = actual.substring(pos - 4, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2288,18 +2241,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("- HASTA")) {
-						int pos = actual.indexOf("-");
-						anio = actual.substring(pos - 4, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+
 				apropiacionSocial.setAnio(anio);
 				apropiacionSocial.setAutores(autores);
 				apropiacionSocial.setReferencia(referencia);
@@ -2345,18 +2294,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += ", " + actual;
 
-					if (actual.contains(bandera)) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(4, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				actividadesFormacion.setAnio(anio);
 				actividadesFormacion.setAutores(autores);
 				actividadesFormacion.setReferencia(referencia);
@@ -2416,20 +2361,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += ", " + actual;
 
-					if (actual.contains("TIPO DE ORIENTACIÓN:")) {
-						int pos = actual.indexOf("HASTA");
-						if (pos >= 3) {
-							anio = actual.substring(pos - 5, pos - 1);
-						}
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.substring(4, referencia.length() - 1);
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				actividadesFormacion.setAnio(anio);
 				actividadesFormacion.setAutores(autores);
 				actividadesFormacion.setReferencia(referencia);
@@ -2474,27 +2413,37 @@ public class GrupLac {
 						tipoProduccion);
 
 			}
-			if (elem.get(i).contains(".-")) {
+			
+			
+			Pattern p = Pattern.compile("\\d.-");
+			Matcher m = p.matcher(elem.get(i));
+			
+			if (m.find()) {
 				int cont = i + 1;
 				referencia = "";
-				while (cont < elem.size() && !elem.get(cont).contains(".-")) {
-					String actual = elem.get(cont);
-					referencia += " " + actual;
+				
+				while (cont < elem.size()) {
+				
+				Pattern p2 = Pattern.compile("\\d.-");
+				Matcher m2 = p2.matcher(elem.get(cont));
+				
+				if (!m2.find()) {
+						String actual = elem.get(cont);
+						referencia += " " + actual;
 
-					if (actual.contains("IDIOMA:")) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")&& actual.length()>8) {
-						autores = actual.substring(9, actual.length() - 1);
+						if (actual.contains("AUTORES:")&& actual.length()>8) {
+							autores = actual.substring(9, actual.length() - 1);
+						}else {
+							autores = "NO ESPECIFICADO";
+						}
 					}else {
-						autores = "NO ESPECIFICADO";
+						break;
 					}
-					cont++;
+				cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				actividadesEvaluador.setAnio(anio);
 				actividadesEvaluador.setAutores(autores);
 				actividadesEvaluador.setReferencia(referencia);
@@ -2534,18 +2483,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("SITIO WEB:")) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos - 4, pos);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				actividadesEvaluador.setAnio(anio);
 				actividadesEvaluador.setAutores(autores);
 				actividadesEvaluador.setReferencia(referencia);
@@ -2597,18 +2542,14 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (actual.contains("IDIOMA:")) {
-						int pos = actual.indexOf(",");
-						anio = actual.substring(pos + 2, pos + 6);
-					} else if (actual.contains("AUTORES:")) {
+					if (actual.contains("AUTORES:")) {
 						autores = actual.substring(9, actual.length() - 1);
 					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
+				anio=extraerAnio(referencia);
+				
 				masInformacion.setAnio(anio);
 				masInformacion.setAutores(autores);
 				masInformacion.setReferencia(referencia);
@@ -2648,14 +2589,12 @@ public class GrupLac {
 					String actual = elem.get(cont);
 					referencia += " " + actual;
 
-					if (elem.get(i + 3).contains(".-")) {
-						anio = "N/D";
-					} else {
-						anio = elem.get(i + 3).substring(0, 4);
-					}
+					
 					cont++;
 				}
 				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				masInformacion.setAnio(anio);
 				masInformacion.setAutores(autores);
 				masInformacion.setReferencia(referencia);
@@ -2705,17 +2644,12 @@ public class GrupLac {
 						&& !elem.get(cont).contains("INSTANCIAS DE VALORACIÓN DE LA OBRA")) {
 					String actual = elem.get(cont);
 					referencia = referencia + " " + actual;
-					if (actual.contains("CREACIÓN:")) {
-						anio = elem.get(cont + 1).substring(elem.get(cont + 1).length() - 4,
-								elem.get(cont + 1).length());
-					}
+					
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
-				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				produccionArte.setAnio(anio);
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
@@ -2758,17 +2692,12 @@ public class GrupLac {
 				while (cont < elem.size() && !elem.get(cont).contains("NOMBRE DEL PRODUCTO:")) {
 					String actual = elem.get(cont);
 					referencia = referencia + " " + actual;
-					if (actual.contains("CREACIÓN:")) {
-						anio = elem.get(cont + 1).substring(elem.get(cont + 1).length() - 4,
-								elem.get(cont + 1).length());
-					}
+					
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
-				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				produccionArte.setAnio(anio);
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
@@ -2811,16 +2740,12 @@ public class GrupLac {
 				while (cont < elem.size() && !elem.get(cont).contains("NOMBRE DE LA EMPRESA CREATIVA:")) {
 					String actual = elem.get(cont);
 					referencia = referencia + " " + actual;
-					if (actual.contains("COMERCIO:")) {
-						anio = elem.get(cont + 1).substring(0, 4);
-					}
+					
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
-				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				produccionArte.setAnio(anio);
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
@@ -2863,16 +2788,11 @@ public class GrupLac {
 				while (cont < elem.size() && !elem.get(cont).contains("NOMBRE DEL EVENTO:")) {
 					String actual = elem.get(cont);
 					referencia = referencia + " " + actual;
-					if (actual.contains("INICIO:")) {
-						anio = elem.get(cont + 1).substring(0, 4);
-					}
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
-				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				produccionArte.setAnio(anio);
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
@@ -2916,17 +2836,12 @@ public class GrupLac {
 				while (cont < elem.size() && !elem.get(cont).contains("NOMBRE DEL TALLER:")) {
 					String actual = elem.get(cont);
 					referencia = referencia + " " + actual;
-					if (actual.contains("FINALIZACIÓN:")) {
-						int pos = actual.indexOf("FINALIZACIÓN:");
-						anio = actual.substring(pos + 14, pos + 18);
-					}
+					
 					cont++;
 				}
 				referencia = referencia.trim();
-				if (!StringUtils.isNumeric(anio)) {
-					anio = "N/D";
-				}
-				referencia = referencia.trim();
+				anio=extraerAnio(referencia);
+				
 				produccionArte.setAnio(anio);
 				produccionArte.setReferencia(referencia);
 				produccionArte.setTipo(tipo);
@@ -3062,4 +2977,18 @@ public class GrupLac {
 		}
 
 	}
+	
+	public String extraerAnio(String cadena) {
+		
+		String anio;
+		Pattern p = Pattern.compile(".*\\b(19|20)\\d{2}");
+		Matcher m = p.matcher(cadena);  
+		if (m.find()) {
+			anio=cadena.substring(m.end()-4, m.end());
+		}else {
+			anio="N/D"; 
+		}
+		return anio;
+	}
+	
 }
